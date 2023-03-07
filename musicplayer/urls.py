@@ -20,6 +20,7 @@ from musicplayer import views
 
 urlpatterns = [
     path('songs', views.songs, name='songs'),
-    path('songs/<int:id>', views.songpost, name='songpost')
+    path('songs/<int:id>', views.songpost, name='songpost'),
+    path('displayAllSongs', views.songs, name='All')
 
 ]

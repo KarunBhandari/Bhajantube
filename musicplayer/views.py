@@ -14,3 +14,4 @@ def songs(request):
 def songpost(request,id):
     song= Songs.objects.filter(song_id=id).first()
     return render(request,'songpost.html',{'song':song})
+
