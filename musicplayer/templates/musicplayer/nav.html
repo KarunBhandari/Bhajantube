@@ -1,42 +1,40 @@
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0);" class="closebtn" onclick="closeNav()">&times;</a>
-    
-    {% if request.user.is_authenticated %}
-    <h3 >Hi {{request.user.username}}</h3>
-    <a href="#" ><span class="fa fa-home"></span>&nbsp;&nbsp; Home</a>
-    <a href="#"><span class="fa fa-heart"></span>&nbsp;&nbsp; My Favourite Songs</a>
-    <a href="#"><span class="fa fa-thumbs-up"></span>&nbsp;&nbsp; My Liked Songs</a>
-    <a href="#"> <span class="fa fa-plus-circle" onclick="setIsTyping()"></span>&nbsp;&nbsp; Create New Playlist</a>
-    <a href="#"><span class="fa fa-list"></span>&nbsp;&nbsp; My Playlists</a>
-    <a href="#"><span class="fa fa-key"></span>&nbsp;&nbsp; ChangePassword</a>
-    <a href="#"><span class="fa fa-file-video-o"></span>&nbsp;&nbsp; All Movie Tag</a>
-    <a href="#"><span class="fa fa-user"></span>&nbsp;&nbsp; All Artist Tag</a>
-    <a href="#"><span class="fa fa-sign-out"></span>&nbsp;&nbsp; Logout</a>
-    <!-- <a href="#">Theme</a> -->
-    {% else %}
-    <h3>Hi Guest user</h3>
-    <a href="#" ><span class="fa fa-home"></span>&nbsp;&nbsp; Home</a>
-    <a href="#"><span class="fa fa-sign-in"></span>&nbsp;&nbsp;Login</a>
-    {% endif %}
-    <!-- <a href="#">Add App to Home Screen</a> -->
+  <a href="javascript:void(0);" class="closebtn" onclick="closeNav()">&times;</a>
+  
+  {% if request.user.is_authenticated %}
+  <h3 >Hi {{request.user.username}}</h3>
+  <a href="#" ><span class="fa fa-home"></span>&nbsp;&nbsp; Home</a>
+  <a href="#"><span class="fa fa-heart"></span>&nbsp;&nbsp; My Favourite Songs</a>
+  <a href="#"><span class="fa fa-thumbs-up"></span>&nbsp;&nbsp; My Liked Songs</a>
+  <a href="#"> <span class="fa fa-plus-circle" onclick="setIsTyping()"></span>&nbsp;&nbsp; Create New Playlist</a>
+  <a href="#"><span class="fa fa-list"></span>&nbsp;&nbsp; My Playlists</a>
+  <a href="#"><span class="fa fa-key"></span>&nbsp;&nbsp; ChangePassword</a>
+  <a href="#"><span class="fa fa-file-video-o"></span>&nbsp;&nbsp; All Movie Tag</a>
+  <a href="#"><span class="fa fa-user"></span>&nbsp;&nbsp; All Artist Tag</a>
+  <a href="#" style="color:red !important;"><span class="fa fa-sign-out"></span>&nbsp;&nbsp; Logout</a>
+  <!-- <a href="#">Theme</a> -->
+  {% else %}
+  <h3>Hi Guest user</h3>
+  <a href="#}" ><span class="fa fa-home"></span>&nbsp;&nbsp; Home</a>
+  <a href="#"><span class="fa fa-sign-in"></span>&nbsp;&nbsp;Login</a>
+  {% endif %}
+  <!-- <a href="#">Add App to Home Screen</a> -->
 </div>
 
-<nav class="navbar navbar-light bg-light">
-    <ul style="list-style-type: none;">
+<nav class="navbar navbar-dark bg-dark">
+  <ul>
     <li>
-      <span onclick="openNav()" class="fa fa-bars text-dark" style=" background-color: rgb(253, 201, 11); width: 200%;" id='nav-opener'></span>
-    </li>
-      <li>
-        <h1 class="site-title text-center bg-warning" style=" position: fixed; left:30%; top: 2%;"
-          itemprop="headline"><a title="Bhajantube">
-            <h1>BHAJANTUBE
-          </a></h1>
-      </li>
-      <li style="position: absolute; right: 100px;">
-        <input type="search" class="form-control ds-input" id="search-input" placeholder="Search..."
-          aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list"
-          aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto">
-      </li>
-    </ul>
-
+  <span onclick="openNav()" class="fa fa-bars text-white" id='nav-opener'></span>
+</li>
+<li> <h1 class="site-title text-center bg-warning" style=" position: fixed; left:550px; top: 5px;"
+  itemprop="headline"><a title="Bhajantube">
+    <h1>BHAJANTUBE
+  </a></h1></li>
+  <li style="position:absolute; right: 100px;">
+    <input type="search" class="form-control ds-input" id="search-input" placeholder="Search..."
+      aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list"
+      aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
+      style="position: relative; vertical-align: top; top: 0px;">
+  </li>
+</ul>
 </nav>
