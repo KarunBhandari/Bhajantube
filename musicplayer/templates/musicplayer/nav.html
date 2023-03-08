@@ -16,7 +16,8 @@
   {% else %}
   <h3>Hi Guest user</h3>
   <a href="{% url 'songs' %}" ><span class="fa fa-home"></span>&nbsp;&nbsp; Home</a>
-  <a href="#"><span class="fa fa-sign-in"></span>&nbsp;&nbsp;Login</a>
+  <a href="{% url 'signup' %}"><span class="fa fa-sign-in"></span>&nbsp;&nbsp;Signup</a>
+  <a href="{% url 'login' %}"><span class="fa fa-sign-in"></span>&nbsp;&nbsp;Login</a>
   {% endif %}
   <!-- <a href="#">Add App to Home Screen</a> -->
 </div>

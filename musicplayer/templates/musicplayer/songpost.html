@@ -1,0 +1,21 @@
+{% extends 'basic.html' %}
+{% block title %}Song{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col md-6" style=" padding-top: 3%;">
+        <img src="/documents/{{song.image}}" alt="" height="250px" width="350px">
+    </div>
+    <div class="col md-6">
+        <h2 style="padding-top: 6%; font-weight: 550;">Title: {{song.name}}</h2>
+        <h5 style="padding-top: 2%;font-weight: 550;"> Category: {{song.tags}}</h5>
+        <h5 style="padding-top: 2%;font-weight: 550;"> Singer: {{song.Singer}}</h5>
+        <audio controls style="padding-top: 2%;">
+        <source src="/documents/{{song.song}}" type="audio/mp3">
+        </audio>
+    </div>
+    </div>
+</div>
+
+{% endblock %}
