@@ -5,17 +5,17 @@
   <h3 >Hi {{request.user.username}}</h3>
   <a href="#" ><span class="fa fa-home"></span>&nbsp;&nbsp; Home</a>
   <a href="#"><span class="fa fa-heart"></span>&nbsp;&nbsp; My Favourite Songs</a>
-  <a href="{% url 'getUserLikedSong' %}"><span class="fa fa-thumbs-up"></span>&nbsp;&nbsp; My Liked Songs</a>
+  <a href="#"><span class="fa fa-thumbs-up"></span>&nbsp;&nbsp; My Liked Songs</a>
   <a href="#"> <span class="fa fa-plus-circle" onclick="setIsTyping()"></span>&nbsp;&nbsp; Create New Playlist</a>
-  <a href="{% url 'displayUserPlaylist' %}"><span class="fa fa-list"></span>&nbsp;&nbsp; My Playlists</a>
+  <a href="#"><span class="fa fa-list"></span>&nbsp;&nbsp; My Playlists</a>
   <a href="#"><span class="fa fa-key"></span>&nbsp;&nbsp; ChangePassword</a>
   <a href="#"><span class="fa fa-file-video-o"></span>&nbsp;&nbsp; All Movie Tag</a>
-  <a href="{% url 'allArtistTag' %}"><span class="fa fa-user"></span>&nbsp;&nbsp; All Artist Tag</a>
-  <a href="#}" style="color:red !important;"><span class="fa fa-sign-out"></span>&nbsp;&nbsp; Logout</a>
+  <a href="#}"><span class="fa fa-user"></span>&nbsp;&nbsp; All Artist Tag</a>
+  <a href="#" style="color:red !important;"><span class="fa fa-sign-out"></span>&nbsp;&nbsp; Logout</a>
   <!-- <a href="#">Theme</a> -->
   {% else %}
   <h3>Hi Guest user</h3>
-  <a href="{% url 'songs' %}" ><span class="fa fa-home"></span>&nbsp;&nbsp; Home</a>
+  <a href="#" ><span class="fa fa-home"></span>&nbsp;&nbsp; Home</a>
   <a href="#"><span class="fa fa-sign-in"></span>&nbsp;&nbsp;Login</a>
   {% endif %}
   <!-- <a href="#">Add App to Home Screen</a> -->
