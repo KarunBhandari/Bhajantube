@@ -1,0 +1,135 @@
+{% extends 'base_site.html' %}
+{% load static %}
+
+{% block content %}
+
+<html>
+<head>
+    <style>
+     h1{ margin-left:150px;
+         font-family:Arial Verdana;
+         color: #334451;
+         margin-top:40px;
+         font-size:30px;}
+
+         .music{display: none;}
+    .input{display: none;}
+
+
+    button{color:white;
+           background-color:blue;
+           width:80px;}
+     .button1{color:white;
+           background-color:blue;
+           margin-left:85px;
+           width:80px;
+           margin-top:0px;}
+
+      h1{ margin-left:150px;
+         font-family:Arial Verdana;
+         color: #334451;
+         margin-top:40px;
+         font-size:30px;}
+
+
+
+
+
+ form{margin-top:0px;
+
+      width:10px;
+      display:inline;}
+
+
+.name1{ color:black;
+      font-family:Times New Roman;
+      margin-bottom:5px;}
+
+
+
+    </style>
+</head>
+<body>
+<h1>You searched for : {% for k in item %}
+
+    <b>{{ k}} </b>
+    {% endfor %}
+
+
+</h1>
+<div>
+    {% for message in messages %}<p style="color:red;">{{ message}}</p>
+    {% endfor %}
+</div>
+
+
+<div class="grid-container">
+
+
+    {% for k in sr %}
+    <div class="card">
+        <img src="{{ k.image.url}}"/><br>
+        <b>{{ k.artist_name}} </b><br>
+        <b>{{ k.song_name}}</b> <br>
+
+        <audio controls id="{{forloop.counter}}" class="music" preload="auto">
+            <source src="{{ k.music.url}}" type="audio/mp3"/>
+        </audio>
+        <button type="button" onclick="playsong({{forloop.counter}})" id="but_{{forloop.counter}}">Play</button>
+        <button type="button" onclick="pausesong({{forloop.counter}})">Pause</button>
+        <button type="button" onclick="stopsong({{forloop.counter}})">Stop</button>
+        <button type="button" onclick="forwardAudio({{forloop.counter}})">forward</button>
+        <form method="post" action='playlist'>
+            {%csrf_token%}
+            <input class="input" name="song_id" value="{{k.id}}">
+            <input type="submit" value="Add" class="button1">
+
+        </form>
+
+
+    </div>
+    {% endfor %}
+
+
+</div>
+
+
+<!-- Footer -->
+{% include 'footer.html' %}
+<!-- Footer -->
+
+<!-- Footer -->
+<script>
+function playsong(player_id) {
+    document.getElementById(player_id).play();
+    document.getElementById('but_'+player_id).innerHTML = "Playing";
+
+}
+
+
+function pausesong(player_id) {
+    document.getElementById(player_id).pause();
+    document.getElementById('but_'+player_id).innerHTML = "Play";
+
+
+}
+
+function stopsong(player_id) {
+     document.getElementById('but_'+player_id).innerHTML = "Play";
+    var player = document.getElementById(player_id);
+    player.pause();
+    player.currentTime = 0;
+}
+
+
+function forwardAudio(player_id) {
+     var player = document.getElementById(player_id);
+     player.currentTime += 30.0;
+
+
+}
+
+</script>
+{% endblock content %}
+</body>
+</html>

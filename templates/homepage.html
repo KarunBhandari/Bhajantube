@@ -1,0 +1,155 @@
+{% extends 'base_site.html' %} {% block content %} {%load static%}
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+
+    <style>
+      div > i {
+        cursor: pointer;
+      }
+      .music {
+        display: none;
+      }
+      .input {
+        display: none;
+      }
+
+      button {
+        color: white;
+        background-color: #f35d77;
+        width: auto;
+        height: 20px;
+        padding: 10px;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        outline: none;
+        border: none;
+        border-radius: 20px;
+      }
+      button:hover {
+        background-color: #eb556f;
+      }
+      h1 {
+        margin-left: 150px;
+        font-family: Arial Verdana;
+        color: #334451;
+        margin-top: 40px;
+        font-size: 30px;
+      }
+
+      .homepage {
+        color: white;
+        background-color: black;
+      }
+
+      form {
+        margin-top: 0px;
+
+        width: 10px;
+        display: inline;
+      }
+
+      .name1 {
+        color: black;
+        font-family: Times New Roman;
+        margin-bottom: 5px;
+      }
+
+      .recom {
+        display: block;
+        margin-top: 50px;
+
+        align: left;
+      }
+
+      .rec {
+        align: left;
+      }
+      .active-btn {
+        color: #438d00;
+      }
+    </style>
+  </head>
+  <body style="height: 100%">
+    <h1>All Bhajans</h1>
+    <div style="height: 100%">
+      <div class="grid-container">
+        {% for songs in song %}
+
+        <div class="card">
+          <img src="{{ songs.image.url}}" width="100px" height="100px" />
+          <div>
+            <p class="name1"><b> {{ songs.artist_name}} </b></p>
+            <p class="name1"><b> {{ songs.song_name }} </b></p>
+            <audio controls id="{{forloop.counter}}" class="music">
+              <source src="{{ songs.music.url}}" type="audio/mp3" />
+            </audio>
+            <div
+              style="display: flex; gap: 10px; justify-content: space-evenly"
+            >
+              <i
+                class="fa-solid fa-play"
+                onclick="playsong({{forloop.counter}})"
+                id="but_{{forloop.counter}}"
+              ></i>
+
+              <i
+                class="fa-solid fa-pause"
+                onclick="pausesong({{forloop.counter}})"
+                id="but1_{{forloop.counter}}"
+              >
+              </i>
+              <i
+                class="fa-solid fa-stop"
+                onclick="stopsong({{forloop.counter}})"
+                id="but2_{{forloop.counter}}"
+              >
+              </i>
+            </div>
+            <div style="margin-top: 20px">
+              <form method="post" action="playlist">
+                {%csrf_token%}
+                <input class="input" name="song_id" value="{{songs.id}}" />
+                <button
+                  type="submit"
+                  value="Add"
+                  class="fa-solid fa-heart"
+                ></button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+
+  {% include 'footer.html' %}
+
+  <script>
+    function playsong(player_id) {
+      document.getElementById(player_id).play();
+    }
+
+    function pausesong(player_id) {
+      document.getElementById(player_id).pause();
+    }
+
+    function stopsong(player_id) {
+      var player = document.getElementById(player_id);
+      player.pause();
+      player.currentTime = 0;
+    }
+
+    function forwardAudio(player_id) {
+      var player = document.getElementById(player_id);
+      player.currentTime += 30.0;
+    }
+  </script>
+  {% endblock content %}
+</html>

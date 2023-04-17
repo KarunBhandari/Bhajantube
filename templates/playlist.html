@@ -1,0 +1,89 @@
+{% extends 'base_site.html' %} {% load static %} {% block content %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Playlist</title>
+    <style>
+      .playlist {
+        color: white;
+        background-color: black;
+      }
+
+      .artist {
+        color: black;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+        padding-top: 0px;
+        margin-top: 0px;
+      }
+
+      .table {
+        width: 60%;
+        margin-left: 250px;
+      }
+
+      .remove {
+        color: white;
+        background-color: red;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        width: auto;
+        padding: 5px;
+        margin-top: 20px;
+      }
+
+      h1 {
+        margin-left: 250px;
+        font-family: Arial Verdana;
+        color: #334451;
+        margin-top: 40px;
+        font-size: 30px;
+      }
+
+      tr {
+        height: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      <i class="fa-solid fa-heart" style="color: pink"></i>Your Favourite songs
+    </h1>
+    <table class="table">
+      {% for favourite in lists %}
+      <tr>
+        <td><img src="{{ favourite.song.image.url}}" /><br /></td>
+        <td><p class="artist">{{ favourite.song.artist_name}}</p></td>
+
+        <td>
+          <p class="artist"><b>{{ favourite.song.song_name }}</b></p>
+        </td>
+
+        <td>
+          <audio controls id="{{forloop.counter}}" class="music">
+            <source src="{{ favourite.song.music.url}}" type="audio/mp3" />
+          </audio>
+        </td>
+        <td>
+          <form method="post" action="remove">
+            {%csrf_token %}
+            <input type="hidden" name="fav_id" value="{{favourite.id}}" />
+            <button type="submit" class="remove">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </form>
+        </td>
+        {% endfor %}
+      </tr>
+    </table>
+    <!-- Footer -->
+
+    <!-- Footer -->
+    {% endblock content %}
+  </body>
+</html>

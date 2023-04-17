@@ -1,0 +1,143 @@
+{% load static %}
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>home</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{%  static 'css/navigation.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      body {
+        background-color: #fcfbf7;
+      }
+
+      .grid-container {
+        display: flex;
+        background-color: #f0f5f1;
+        margin-left: 150px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        height: 100%;
+      }
+
+      li a:hover {
+        background-color: #111;
+        text-decoration: none;
+        color: white;
+      }
+
+      .error1 {
+        margin-left: 600px;
+      }
+      .row1 {
+        display: inline-block;
+      }
+
+      .card {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+        display: flex;
+        height: 200px;
+        padding: 20px;
+        border-radius: 10px;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        width: 300px;
+        margin: 10px;
+        gap: 20px;
+      }
+      .card:hover {
+        box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2);
+      }
+      .search-container {
+        margin-right: 70px;
+        float: left;
+      }
+
+      .user {
+        margin-right: 10px;
+        font-size: 25px;
+        color: #fff;
+        margin-top: 5px;
+      }
+      .user span {
+        font-size: 15px;
+        margin-left: 5px;
+      }
+      .name {
+        color: white;
+        font-family: Brush Script MT;
+        /*padding-left:200px;*/
+        padding-right: 5px;
+        margin-top: 10px;
+        font-size: 30px;
+      }
+      .searchbutton {
+        color: white;
+        background-color: black;
+        opacity: 0.8;
+      }
+      .button1 {
+        color: white;
+        background-color: blue;
+        opacity: 0.8;
+        width: 150px;
+      }
+      .edit {
+        color: white;
+        font-size: 20px;
+        padding: 6px 45px;
+        background-color: blue;
+      }
+      .edit:hover {
+        color: white;
+        font-size: 20px;
+        padding: 6px 45px;
+        background-color: black;
+        text-decoration: none;
+      }
+      .active {
+        background-color: #4caf50;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <ul>
+        <li><a class="homepage" href="homepage">Home</a></li>
+        <li><a class="playlist" href="playlist">Playlist</a></li>
+        <li><a class="profile" href="profile">Profile</a></li>
+
+        <div style="float: right">
+          <li class="user">
+            {% if user.is_authenticated%}
+            <i class="fa-solid fa-user"></i><span>{{user.username}}</span>
+            {% endif %}
+          </li>
+          <li>
+            <a class="active" href="logout">Logout</a>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="error1">
+      {% for message in messages %}
+      <p style="color: red; font-size: 20px">{{ message}}</p>
+      {% endfor %}
+    </div>
+    {% block content %} {% endblock content %}
+  </body>
+</html>

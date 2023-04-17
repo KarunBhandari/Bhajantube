@@ -1,0 +1,41 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/loging.css' %}"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      html,
+      body {
+        height: 100%;
+      }
+
+      /* CSS */
+    </style>
+  </head>
+  <body>
+    {% include 'nav.html' %}
+
+    <div>
+      <img
+        src="{%static 'images/background.jpg'%}"
+        style="height: 100%; width: 100%"
+      />
+    </div>
+
+    <!-- Footer -->
+    {% include 'footer.html' %}
+    <!-- Footer -->
+  </body>
+</html>

@@ -1,0 +1,59 @@
+{% extends 'base_site.html' %} {% load static %} {% block content %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>home</title>
+
+    <style>
+      .container {
+        width: 100%;
+        margin-top: 26px;
+        margin-bottom: 35px;
+        display: flex;
+        justify-content: center;
+        padding: 20px 190px;
+      }
+
+      .row {
+        display: flex;
+        margin-right: 0;
+        border-radius: 20px;
+        align-items: center;
+      }
+
+      h1 {
+        margin-left: 150px;
+        font-family: Arial Verdana;
+        color: #334451;
+        margin-top: 40px;
+        font-size: 30px;
+      }
+      .helpText {
+        color: red;
+      }
+      p label {
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><i class="fa-solid fa-edit"></i>Edit Profile</h1>
+    <div style="height: 100%">
+      <div class="row">
+        <div class="container">
+          <form method="post" style="width: 100%">
+            {% csrf_token %} {{ form.as_p }}
+
+            <button class="btn btn-primary" type="submit">Edit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    {% include 'footer.html' %}
+    <!-- Footer -->
+
+    {% endblock content %}
+  </body>
+</html>

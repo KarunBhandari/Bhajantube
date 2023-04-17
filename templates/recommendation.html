@@ -1,0 +1,123 @@
+{% extends 'base_site.html' %}
+{% block content %}
+
+
+<html>
+<head>
+    <style>
+    .music{display: none;}
+    .input{display: none;}
+
+
+    button{color:white;
+           background-color:blue;
+           width:80px;}
+     .button1{color:white;
+           background-color:blue;
+           margin-left:85px;
+           width:80px;
+           margin-top:0px;}
+
+      h1{ margin-left:150px;
+         font-family:Arial Verdana;
+         color: #334451;
+         margin-top:40px;
+         font-size:30px;}
+
+ .homepage{color:white;
+                  background-color:black;}
+
+
+
+ form{margin-top:0px;
+
+      width:10px;
+      display:inline;}
+
+
+.name1{ color:black;
+      font-family:Times New Roman;
+      margin-bottom:5px;
+      }
+
+.recom{display: block;
+        margin-top:50px;
+
+        align:left;}
+
+
+
+    </style>
+</head>
+
+</div>
+<div class="recom h4" style="padding:10px">
+     Songs similar to: <span class="badge badge-pill badge-info">
+        {{songName}}
+</span>
+</div>
+<div style="display:flex;gap:15px;flex-wrap:wrap;padding:10px;">
+{% for k in re %}
+
+    <div class="badge btn-secondary disabled">
+          <h5>{{k}}</h5>
+      </div>
+
+
+{% endfor %}
+</div>
+</div>
+
+
+{% include 'footer.html' %}
+
+<script>
+function playsong(player_id) {
+    document.getElementById(player_id).play();
+    document.getElementById('but_'+player_id).innerHTML = "Playing";
+     document.getElementById('but1_'+player_id).innerHTML = "Pause";
+     document.getElementById('but2_'+player_id).innerHTML = "Stop";
+
+}
+
+
+function pausesong(player_id) {
+    document.getElementById(player_id).pause();
+    document.getElementById('but_'+player_id).innerHTML = "Play";
+    document.getElementById('but1_'+player_id).innerHTML = "Paused";
+
+
+}
+
+function stopsong(player_id) {
+     document.getElementById('but_'+player_id).innerHTML = "Play";
+     document.getElementById('but2_'+player_id).innerHTML = "Stopped";
+    var player = document.getElementById(player_id);
+    player.pause();
+    player.currentTime = 0;
+}
+
+
+function forwardAudio(player_id) {
+     var player = document.getElementById(player_id);
+     player.currentTime += 30.0;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+{% endblock content %}
+</body>
+
+</html>
