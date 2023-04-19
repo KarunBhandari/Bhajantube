@@ -76,6 +76,12 @@
   </head>
   <body style="height: 100%">
     <h1>All Bhajans</h1>
+    <div>
+      <input type="search" class="form-control ds-input" id="search-input" placeholder="Search..."
+        aria-label="Search for..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list"
+        aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
+        style="position: relative; top: 1%; left: 10%;">
+      </div>
     <div style="height: 100%">
       <div class="grid-container">
         {% for songs in song %}
@@ -93,19 +99,19 @@
             >
               <i
                 class="fa-solid fa-play"
-                onclick="playsong({{forloop.counter}})"
+                onclick="playsong('{{forloop.counter}}')"
                 id="but_{{forloop.counter}}"
               ></i>
 
               <i
                 class="fa-solid fa-pause"
-                onclick="pausesong({{forloop.counter}})"
+                onclick="pausesong('{{forloop.counter}}')"
                 id="but1_{{forloop.counter}}"
               >
               </i>
               <i
                 class="fa-solid fa-stop"
-                onclick="stopsong({{forloop.counter}})"
+                onclick="stopsong('{{forloop.counter}}')"
                 id="but2_{{forloop.counter}}"
               >
               </i>
