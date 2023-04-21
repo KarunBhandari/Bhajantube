@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 # Create your views here.
 from django.urls import reverse
-
+from fyp.utilityfunctions import *
 from accounts.forms import EditProfileForm
 from accounts.models import Playlist
 from music.models import Songs
@@ -103,7 +103,6 @@ def Search(request):
         Recm = request.POST['rec']
         if Recm:
             try:
-                recom = genre_recommendations(Recm).head()
                 song = Songs.objects.all().order_by('?')[:10]
                 return render(request, 'recommendation.html', {'song': song, 're': recom, 'songName': Recm})
             except Exception:
@@ -115,7 +114,6 @@ def Search(request):
 
     else:
         return render(request, 'Search.html')
-
 
 @login_required(login_url='login')
 def playlist(request):
@@ -177,6 +175,3 @@ def recommendation(request):
         messages.error(request, 'no recommendation found')
         return redirect('recommendation')
     
-def genre_recommendations(genre):
-    recommended_music = Songs.objects.filter(genre=genre)
-    return recommended_music

@@ -96,6 +96,7 @@
       }
     </style>
     <script src=" {%  static 'js/main.js' %}"></script>
+    <script src=" {%  static 'js/login.js' %}"></script>
   </head>
   <body>
     <div id="header">
@@ -114,24 +115,24 @@
             <span class="login100-form-title p-b-43"> Register here </span>
 
             <div class="wrap-input100 validate-input">
-              <input class="input100" name="first_name" type="text" />
+              <input class="input100" name="first_name" type="text" required oninput="handleInputChange(this, 'labelFirst')"/>
               <span class="focus-input100"></span>
-              <span class="label-input100">Firstname</span>
+              <span class="label-input100" id="labelFirst">Firstname</span>
             </div>
 
             <div class="wrap-input100 validate-input">
-              <input class="input100" name="last_name" type="text" />
+              <input class="input100" name="last_name" type="text" required oninput="handleInputChange(this, 'labelLast')"/>
               <span class="focus-input100"></span>
-              <span class="label-input100">last_name</span>
+              <span class="label-input100" id="labelLast">last_name</span>
             </div>
 
             <div
               class="wrap-input100 validate-input"
               data-validate="Valid email is required: ex@abc.xyz"
             >
-              <input class="input100" name="email" type="email" required />
+              <input class="input100" name="email" type="email"  required oninput="handleInputChange(this, 'labelMail')"/>
               <span class="focus-input100"></span>
-              <span class="label-input100">Email</span>
+              <span class="label-input100" id="labelMail">Email</span>
             </div>
 
             <div
@@ -143,19 +144,19 @@
                 name="username"
                 type="text"
                 minlength="1"
-                required
-              />
+                
+                required oninput="handleInputChange(this, 'labelUser')"/>
               <span class="focus-input100"></span>
-              <span class="label-input100">Username </span>
+              <span class="label-input100" id="labelUser">Username </span>
             </div>
 
             <div
               class="wrap-input100 validate-input"
               data-validate="Password is required"
             >
-              <input class="input100" type="password" name="password" />
+              <input class="input100" type="password" name="password" required oninput="handleInputChange(this, 'labelPass')"/>
               <span class="focus-input100"></span>
-              <span class="label-input100">Password</span>
+              <span class="label-input100" id="labelPass">Password</span>
             </div>
 
             <div class="container-login100-form-btn">
