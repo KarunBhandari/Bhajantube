@@ -61,9 +61,9 @@ def register(request):
         return render(request, 'register.html')
 
 
-@login_required(login_url='login')
+
 def homepage(request):
-    song = Songs.objects.all().order_by('?')[:8]
+    song = Songs.objects.all().order_by('?')[:20]
     return render(request, 'homepage.html', {'song': song})
 
 

@@ -124,10 +124,12 @@
           <li class="user">
             {% if user.is_authenticated%}
             <i class="fa-solid fa-user"></i><span>{{user.username}}</span>
-            {% endif %}
           </li>
           <li>
             <a class="active" href="logout">Logout</a>
+            {% else %}
+            <a class="active" href="login">Login</a>
+            {% endif %}
           </li>
         </div>
       </ul>

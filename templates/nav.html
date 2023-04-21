@@ -26,14 +26,11 @@
     {% if request.user.is_authenticated %}
     <h3 >Hi {{request.user.username}}</h3>
     <a class="nav-link" href="accounts/homepage" ><span class="fa fa-home"></span>&nbsp;&nbsp; All Songs</a>
-    <a class="nav-link" href="#"><span class="fa fa-heart"></span>&nbsp;&nbsp; All History</a>
-    <a class="nav-link" href="#"><span class="fa fa-list"></span>&nbsp;&nbsp; My Playlists</a>
-    <a class="nav-link" href="#"><span class="fa fa-user"></span>&nbsp;&nbsp; All Artist Tag</a>
     <a class="nav-link" href="accounts/logout" style="color:red !important;"><span class="fa fa-sign-out"></span>&nbsp;&nbsp; Logout</a>
     <!-- <a href="#">Theme</a> -->
     {% else %}
     <h3>Hi Guest user</h3>
-    <a class="nav-link" href='songs' ><span class="fa fa-home"></span>&nbsp;&nbsp; All Songs</a>
+    <a class="nav-link" href="accounts/homepage" ><span class="fa fa-home"></span>&nbsp;&nbsp; All Songs</a>
     <a class="nav-link" href='accounts/register'><span class="fa fa-sign-in"></span>&nbsp;&nbsp;Signup</a>
     <a class="nav-link" href='accounts/login'><span class="fa fa-sign-in"></span>&nbsp;&nbsp;Login</a>
     {% endif %}

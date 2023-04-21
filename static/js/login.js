@@ -7,3 +7,5 @@ function handleInputChange(input, labelId) {
     }
   }
   
+  document.getElementById("username").autocomplete = "off";
+  document.getElementById("password").autocomplete = "off";
