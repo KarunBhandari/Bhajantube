@@ -73,6 +73,12 @@
       type="text/css"
       href="{%  static 'css/main.css' %}"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{%  static 'css/loging.css' %}"
+    />
+
 
     <!--===============================================================================================-->
     <script src=" {%  static 'js/main.js' %}"></script>
@@ -110,9 +116,9 @@
             <span class="login100-form-title p-b-43"> Login </span>
 
             <div class="wrap-input100 validate-input">
-              <input class="input100" name="username" type="text" required />
+              <input class="input100" name="username" type="text" required oninput="handleInputChange(this, 'labelUser')" />
               <span class="focus-input100"></span>
-              <span class="label-input100">Username</span>
+              <span class="label-input100" id="labelUser">Username</span>
             </div>
 
             <div
@@ -123,10 +129,10 @@
                 class="input100"
                 type="password"
                 name="password"
-                required
+                required oninput="handleInputChange(this, 'labelPass')"
               />
               <span class="focus-input100"></span>
-              <span class="label-input100">Password</span>
+              <span class="label-input100" id="labelPass">Password</span>
             </div>
 
             <div class="container-login100-form-btn">
@@ -148,5 +154,6 @@
       </div>
     </div>
     {% include 'footer.html' %}
+    <script src="{% static 'js/login.js' %}" ></script>
   </body>
 </html>
