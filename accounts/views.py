@@ -98,23 +98,13 @@ def logout(request):
 
 @login_required(login_url='login')
 def Search(request):
-    print("search", request)
-    if request.method == 'POST':
-        Recm = request.POST['rec']
-        if Recm:
-            try:
-                recom = genre_recommendations(Recm).head()
-                song = Songs.objects.all().order_by('?')[:10]
-                return render(request, 'recommendation.html', {'song': song, 're': recom, 'songName': Recm})
-            except Exception:
-                messages.error(request, 'no recommendation found')
-                return redirect('homepage')
-        else:
-            messages.error(request, 'no recommendation found')
-            return redirect('homepage')
-
-    else:
-        return render(request, 'Search.html')
+    searched_songs =set()
+    searchKey = request.POST.get('searchkey').lower()
+    print(searchKey)
+    for song in Songs.objects.all():
+        if (song.song_name and searchKey in song.song_name.lower()):
+            searched_songs.add(song)
+    return render(request, 'Search.html')
 
 
 @login_required(login_url='login')
