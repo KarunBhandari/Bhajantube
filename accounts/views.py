@@ -63,7 +63,7 @@ def register(request):
 
 @login_required(login_url='login')
 def homepage(request):
-    song = Songs.objects.all().order_by('?')[:8]
+    song = Songs.objects.all().order_by('?')[:20]
     return render(request, 'homepage.html', {'song': song})
 
 
@@ -104,7 +104,7 @@ def Search(request):
     for song in Songs.objects.all():
         if (song.song_name and searchKey in song.song_name.lower()):
             searched_songs.add(song)
-    return render(request, 'Search.html')
+    return render(request, 'Search.html',{'searched_songs':searched_songs})
 
 
 @login_required(login_url='login')

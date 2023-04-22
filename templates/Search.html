@@ -66,19 +66,18 @@
 <div class="grid-container">
 
 
-    {% for k in sr %}
+    {% for k in searched_songs %}
     <div class="card">
-        <img src="{{ k.image.url}}"/><br>
-        <b>{{ k.artist_name}} </b><br>
-        <b>{{ k.song_name}}</b> <br>
-
-        <audio controls id="{{forloop.counter}}" class="music" preload="auto">
-            <source src="{{ k.music.url}}" type="audio/mp3"/>
+        <img src="{{ k.image.url}}"/></br>
+        <b>{{ k.artist_name}} </b></br>
+        <b>{{ k.song_name}}</b> </br>
+        <audio controls id="{{forloop.counter}}" class="music">
+            <source src="{{ songs.music.url}}" type="audio/mp3" />
         </audio>
-        <button type="button" onclick="playsong({{forloop.counter}})" id="but_{{forloop.counter}}">Play</button>
-        <button type="button" onclick="pausesong({{forloop.counter}})">Pause</button>
-        <button type="button" onclick="stopsong({{forloop.counter}})">Stop</button>
-        <button type="button" onclick="forwardAudio({{forloop.counter}})">forward</button>
+        <button type="button" onclick="playsong(forloop.counter)" id="but_{{forloop.counter}}">Play</button>
+        <button type="button" onclick="pausesong(forloop.counter)">Pause</button>
+        <button type="button" onclick="stopsong(forloop.counter)">Stop</button>
+        <button type="button" onclick="forwardAudio(forloop.counter)">forward</button>
         <form method="post" action='playlist'>
             {%csrf_token%}
             <input class="input" name="song_id" value="{{k.id}}">
