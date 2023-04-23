@@ -98,6 +98,7 @@ def logout(request):
 
 @login_required(login_url='login')
 def Search(request):
+<<<<<<< HEAD
     print("search", request)
     if request.method == 'POST':
         Recm = request.POST['rec']
@@ -114,6 +115,15 @@ def Search(request):
 
     else:
         return render(request, 'Search.html')
+=======
+    searched_songs =set()
+    searchKey = request.POST.get('searchkey').lower()
+    print(searchKey)
+    for song in Songs.objects.all():
+        if (song.song_name and searchKey in song.song_name.lower()):
+            searched_songs.add(song)
+    return render(request, 'Search.html',{'searched_songs':searched_songs})
+>>>>>>> work1
 
 @login_required(login_url='login')
 def playlist(request):

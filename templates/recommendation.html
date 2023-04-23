@@ -1,56 +1,6 @@
-{% extends 'base_site.html' %}
+{% if user.is_authenticated%}
 {% block content %}
 
-
-<html>
-<head>
-    <style>
-    .music{display: none;}
-    .input{display: none;}
-
-
-    button{color:white;
-           background-color:blue;
-           width:80px;}
-     .button1{color:white;
-           background-color:blue;
-           margin-left:85px;
-           width:80px;
-           margin-top:0px;}
-
-      h1{ margin-left:150px;
-         font-family:Arial Verdana;
-         color: #334451;
-         margin-top:40px;
-         font-size:30px;}
-
- .homepage{color:white;
-                  background-color:black;}
-
-
-
- form{margin-top:0px;
-
-      width:10px;
-      display:inline;}
-
-
-.name1{ color:black;
-      font-family:Times New Roman;
-      margin-bottom:5px;
-      }
-
-.recom{display: block;
-        margin-top:50px;
-
-        align:left;}
-
-
-
-    </style>
-</head>
-
-</div>
 <div class="recom h4" style="padding:10px">
      Songs similar to: <span class="badge badge-pill badge-info">
         {{songName}}
