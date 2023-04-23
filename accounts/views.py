@@ -98,24 +98,6 @@ def logout(request):
 
 @login_required(login_url='login')
 def Search(request):
-<<<<<<< HEAD
-    print("search", request)
-    if request.method == 'POST':
-        Recm = request.POST['rec']
-        if Recm:
-            try:
-                song = Songs.objects.all().order_by('?')[:10]
-                return render(request, 'recommendation.html', {'song': song, 're': recom, 'songName': Recm})
-            except Exception:
-                messages.error(request, 'no recommendation found')
-                return redirect('homepage')
-        else:
-            messages.error(request, 'no recommendation found')
-            return redirect('homepage')
-
-    else:
-        return render(request, 'Search.html')
-=======
     searched_songs =set()
     searchKey = request.POST.get('searchkey').lower()
     print(searchKey)
@@ -123,7 +105,6 @@ def Search(request):
         if (song.song_name and searchKey in song.song_name.lower()):
             searched_songs.add(song)
     return render(request, 'Search.html',{'searched_songs':searched_songs})
->>>>>>> work1
 
 @login_required(login_url='login')
 def playlist(request):
