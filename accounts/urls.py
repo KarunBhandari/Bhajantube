@@ -12,7 +12,7 @@ urlpatterns = [
     path('edit_profile', views.edit_profile, name='edit_profile'),
     path('playlist', views.playlist, name='playlist'),
     path('remove', views.remove, name='playlist'),
-
+    path('changePassword',views.changePassword, name="change"),
+    path('changePasswordForm',views.changePasswordForm, name="changeForm"),
 path('Recommendation', views.recommendation, name='recommendation'),
 ]
-

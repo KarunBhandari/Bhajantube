@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -13,6 +13,7 @@ from accounts.forms import EditProfileForm
 from accounts.models import Playlist
 from music.models import Songs
 from django.contrib.auth.forms import UserChangeForm
+from .Recommendation import genre_recommendations
 
 
 def login(request):
@@ -24,13 +25,13 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('homepage')
+            return redirect('/')
         else:
             messages.info(request, 'invalid username or password')
             return redirect('login')
 
-    else:
-        return render(request, 'login.html')
+    
+    return render(request, 'login.html')
 
 
 def register(request):
@@ -59,7 +60,6 @@ def register(request):
                 return redirect('login')
     else:
         return render(request, 'register.html')
-
 
 
 def homepage(request):
@@ -98,13 +98,35 @@ def logout(request):
 
 @login_required(login_url='login')
 def Search(request):
-    searched_songs =set()
+    searched_songs = set()
     searchKey = request.POST.get('searchkey').lower()
     print(searchKey)
     for song in Songs.objects.all():
         if (song.song_name and searchKey in song.song_name.lower()):
             searched_songs.add(song)
-    return render(request, 'Search.html',{'searched_songs':searched_songs})
+    return render(request, 'Search.html', {'searched_songs': searched_songs})
+
+
+@login_required(login_url='login')
+def changePasswordForm(request):
+    return render(request,'changePassword.html')
+
+
+@login_required(login_url='login')
+def changePassword(request):
+    if request.method == 'POST':
+        # user = User.objects.get(username=request.user.username)
+        user = authenticate(request, username=request.POST['username'], password=request.POST['old-password'])
+
+        if user is not None:
+            user.set_password(request.POST['new-password'])
+            user.save()
+            update_session_auth_hash(request, user)
+            # messages.success(request, 'Password successfully updated!')
+            return redirect('/',username=user.username)
+        messages.error(request,'User authenticatio failed')
+        return render(request,'changePassword.html')
+    return render(request,'login.html')
 
 @login_required(login_url='login')
 def playlist(request):
@@ -142,27 +164,23 @@ def remove(request):
         return render(request, 'playlist.html', args)
 
 
-@login_required(login_url='login')
 def recommendation(request):
-    print(request.POST["rec"])
     if request.method == 'POST':
         Recm = request.POST['rec']
         if Recm:
             try:
                 recom = genre_recommendations(Recm).head()
                 if recom is not None:
-                    song = Songs.objects.all().order_by('?')[:10]
-                    return render(request, 'recommendation.html', {'song': song, 're': recom, 'songName': Recm})
+                    return render(request, 'recommendation.html', {'re': recom, 'songName': Recm})
                 else:
                     messages.error(request, 'no recommendation found')
-                    return redirect('homepage')
+                    return render(request, 'recommendation.html', {'re': [], 'songName': Recm})
             except Exception:
                 messages.error(request, 'no recommendation found')
-                return redirect('homepage')
+                return render(request, 'recommendation.html', {'re': [], 'songName': Recm})
         else:
             messages.error(request, 'no recommendation found')
-            return redirect('homepage')
+            return render(request, 'recommendation.html', {'re': [], 'songName': Recm})
     else:
         messages.error(request, 'no recommendation found')
-        return redirect('recommendation')
-    
+        return render(request, 'recommendation.html', {'re': [], 'songName': Recm})
